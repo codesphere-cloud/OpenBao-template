@@ -1,1 +1,0 @@
-# OpenBao-template
