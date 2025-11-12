@@ -1,0 +1,19 @@
+schemaVersion: v0.2
+prepare:
+  steps:
+    - name: running installation script
+      command: chmod +x ./scripts/instal.sh && ./scripts/install.sh
+test:
+  steps: []
+run:
+  openbao:
+    steps:
+      - name: execute binary
+        command: ./bao
+    plan: 8
+    replicas: 1
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+      paths: []
