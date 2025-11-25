@@ -2,3 +2,5 @@ bao
 
 openbao-data
 openbao.log
+
+bin/**

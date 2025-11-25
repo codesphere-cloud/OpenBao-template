@@ -2,16 +2,14 @@ schemaVersion: v0.2
 prepare:
   steps:
     - name: running installation script
-      command: chmod +x ./scripts/instal.sh && ./scripts/install.sh
-    - name: initialize openboa if not already initialized
-      command: chmod +x ./scripts/init.sh && . ./scripts/init.sh
+      command: chmod +x ./scripts/install.sh && ./scripts/install.sh
 test:
   steps: []
 run:
   openbao:
     steps:
       - name: execute binary
-        command: ./bao server -config="/home/user/app/openbao.hcl"
+        command: ./bin/process-compose -t=False
     plan: 8
     replicas: 1
     network:

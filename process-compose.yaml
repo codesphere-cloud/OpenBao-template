@@ -1,0 +1,29 @@
+version: "0.5"
+
+environment:
+  - 'BAO_ADDR=http://127.0.0.1:3000'
+  - 'PATH=$PATH:$(pwd)/bin'
+
+processes:
+  openbao:
+    command: "bao server -config=config.hcl"
+    is_foreground: true
+    shutdown:
+      command: "kill -SIGINT $(pidof bao)"
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1" 
+        scheme: "http"
+        port: 3000
+        path: "/v1/sys/health?standbyok=true&uninitcode=200&sealedcode=200"
+      initial_delay_seconds: 2
+      period_seconds: 5
+      timeout_seconds: 2
+      success_threshold: 1
+      failure_threshold: 5
+
+  lifecycle-manager:
+    command: "./scripts/lifecycle.sh"
+    depends_on:
+      openbao:
+        condition: process_healthy
