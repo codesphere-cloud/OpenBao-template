@@ -9,7 +9,7 @@ run:
   openbao:
     steps:
       - name: execute binary
-        command: ./bin/process-compose -t=False
+        command: ./bin/process-compose up -t=False
     plan: 8
     replicas: 1
     network:

@@ -18,7 +18,8 @@ FRESH_INSTALL="false"
 
 if [ "$INIT_STATUS" == "false" ]; then
     echo "[Lifecycle] System is NOT initialized. Starting initialization..."
-    
+		
+		mkdir -p "$DATA_DIR"
     if [ -f "$KEY_FILE" ]; then
         rm "$KEY_FILE"
     fi
@@ -61,12 +62,15 @@ if [ "$FRESH_INSTALL" == "true" ]; then
     ROOT_TOKEN=$(jq -r .root_token $KEY_FILE)
     export BAO_TOKEN=$ROOT_TOKEN
 
-    bao auth enable userpass || true
+    bao auth enable userpass 2>/dev/null || true
+
+		echo 'path "*" { capabilities = ["create", "read", "update", "delete", "list", "sudo"] }' | bao policy write admin-policy -
+    echo "[Lifecycle] Policy 'admin-policy' written/updated."
 
     if [ -n "$BAO_ADMIN_USER" ] && [ -n "$BAO_ADMIN_PASSWORD" ]; then
         bao write auth/userpass/users/$BAO_ADMIN_USER \
             password="$BAO_ADMIN_PASSWORD" \
-            token_policies="root"
+            token_policies="admin-policy"
         echo "[Lifecycle] Admin user '$BAO_ADMIN_USER' created."
     else
         echo "[Lifecycle] WARNING: No admin credentials set in environment variables."

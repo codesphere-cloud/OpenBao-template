@@ -2,9 +2,6 @@ ui = true
 
 api_addr = "http://0.0.0.0:3000"
 
-// ulimit -l -> 8192
-disable_mlock = true
-
 storage "file" {
   path = "/home/user/app/openbao-data"
 }

@@ -3,6 +3,7 @@
 set -e
 
 mkdir -p ./bin
+export PATH=$PATH:$(pwd)/bin
 
 echo "Installing OpenBao..."
 API_URL="https://api.github.com/repos/openbao/openbao/releases/latest"
@@ -50,8 +51,5 @@ curl -L -f -o ./bin/jq $JQ_DL_URL
 chmod +x ./bin/jq
 chmod +x ./bin/bao
 chmod +x ./bin/process-compose
-chmod +x ./scripts/lifecircle.sh
+chmod +x ./scripts/lifecycle.sh
 chmod +x ./scripts/test.sh
-
-./bin/bao --version
-./bin/process-compose version

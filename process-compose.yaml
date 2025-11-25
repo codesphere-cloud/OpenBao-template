@@ -2,12 +2,10 @@ version: "0.5"
 
 environment:
   - 'BAO_ADDR=http://127.0.0.1:3000'
-  - 'PATH=$PATH:$(pwd)/bin'
 
 processes:
   openbao:
-    command: "bao server -config=config.hcl"
-    is_foreground: true
+    command: "./bin/bao server -config=openbao.hcl"
     shutdown:
       command: "kill -SIGINT $(pidof bao)"
     readiness_probe:
