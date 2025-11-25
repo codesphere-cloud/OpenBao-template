@@ -11,7 +11,7 @@ run:
   openbao:
     steps:
       - name: execute binary
-        command: "chmod +x ./scripts/start-openboa.sh  && . ./scripts/start-openboa.sh "
+        command: ./bao server -config="/home/user/app/openbao.hcl"
     plan: 8
     replicas: 1
     network:

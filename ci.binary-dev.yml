@@ -2,7 +2,7 @@ schemaVersion: v0.2
 prepare:
   steps:
     - name: install openbao binary
-      command: chmod +x ./scripts/instal.sh && ./scripts/install.sh
+      command: chmod +x ./scripts/install.sh && ./scripts/install.sh
 test:
   steps: []
 run:
