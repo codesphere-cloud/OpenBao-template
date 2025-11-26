@@ -70,7 +70,7 @@ if [ "$FRESH_INSTALL" == "true" ]; then
     if [ -n "$BAO_ADMIN_USER" ] && [ -n "$BAO_ADMIN_PASSWORD" ]; then
         bao write auth/userpass/users/$BAO_ADMIN_USER \
             password="$BAO_ADMIN_PASSWORD" \
-            token_policies="superuser"
+            token_policies="admin-policy"
         echo "[Lifecycle] Admin user '$BAO_ADMIN_USER' created."
     else
         echo "[Lifecycle] WARNING: No admin credentials set in environment variables."
