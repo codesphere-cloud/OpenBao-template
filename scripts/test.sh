@@ -30,9 +30,9 @@ fi
 export BAO_TOKEN="$ADMIN_TOKEN"
 echo "[Test] Successfully logged in as Admin."
 
-NEW_ENGINE="cs-secrets-engine"
+NEW_ENGINE="cs-secrets-engine-3"
 echo "[Test] Enabling new KV secrets engine at '$NEW_ENGINE/'..."
-$BAO_BIN secrets enable -path=$NEW_ENGINE kv 2>/dev/null || echo "   (Engine probably already exists, continuing...)"
+$BAO_BIN secrets enable -path=$NEW_ENGINE -version=2 kv 2>/dev/null || echo "   (Engine probably already exists, continuing...)"
 
 TEST_PATH="$NEW_ENGINE/my-secret"
 TEST_KEY="demo-key"
