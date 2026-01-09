@@ -1,0 +1,53 @@
+name: openbao
+
+# Backend configuration - points to the application repository
+backend:
+  landscape:
+    ciProfile: "prod"
+
+# Marketplace display information
+displayName: "OpenBao"
+description: "Manage, store, and distribute sensitive data with OpenBao"
+author: "Codesphere"
+category: ""
+version: "v1"
+iconUrl: "https://raw.githubusercontent.com/openbao/artwork/main/color/openbao-color.svg"
+
+# Configuration schema - user-configurable settings
+configSchema:
+  type: object
+  properties:
+    openBaoUser:
+      type: string
+      description: "Admin user"
+  required:
+    - openBaoUser
+  additionalProperties: false
+
+# Details schema - additional deployment details
+# TODO: What is this and whow we can use that for this MS?
+detailsSchema:
+  type: object
+  properties:
+    organizationName:
+      type: string
+      description: "Your organization name"
+
+# Secrets schema - sensitive configuration
+secretsSchema:
+  type: object
+  properties:
+    openBaoAdminPassword:
+      type: string
+      format: password
+      description: "Admin user password for OpenBao"
+  required:
+    - openBaoAdminPassword
+  additionalProperties: false
+
+# Service plans with pricing tiers
+plans:
+  - id: 0
+    name: "Default"
+    description: "Default Plan"
+    parameters: {}
