@@ -4,3 +4,5 @@ openbao-data
 openbao.log
 
 bin/**
+
+**.tar.gz
